@@ -34,11 +34,11 @@
   }
   
     body{
-  background-image: url(https://as1.ftcdn.net/v2/jpg/01/94/18/80/1000_F_194188036_ejhFq0MavSJFZh9umJ7nq7wzgYUJ9GUe.jpg );
+ /* background-image: url('hhh');
   
   background-size: cover;
   
-  background-position: center;
+  background-position: center; */
   position: relative;
   height: 100%;
   background-repeat: no-repeat;

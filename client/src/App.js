@@ -1,23 +1,29 @@
-import Header from "./component/Header"
-import Dates from "./component/Date";
-import AddTask from "./component/AddTask";
-import TaskList from "./component/TaskList";
-import { useState } from "react";
+import {BrowserRouter,Routes,Route} from 'react-router-dom'
+import AddTask from './pages/AddTask';
+import AssignedTask from './pages/AssignedTask';
+import AssignTask from './pages/AssignTask';
+import LoginPage from './pages/LoginPage';
+import PersonalTask from './pages/PersonalTask';
+import SignupPage from './pages/SignupPage';
+import SharedLayout from './pages/SharedLayout';
+
 
 function App() {
   
-  const [click,setClick] =useState(true)
-
-  function handleClick(event){
-    setClick((click)=>!click)
-  }
+   
   return (
-     <div>
-      <Header/>
-      { click && <><Dates/> <AddTask/></>}
-      {!click && <><TaskList/></>}
-      <button onClick={handleClick}>I'm Button</button>
-     </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<SharedLayout/>}>
+            <Route index element={<LoginPage/>}/>
+            <Route path='signup' element={<SignupPage/>}/>
+            <Route path='addtask' element={<AddTask/>}/>
+            <Route path='personaltask' element={<PersonalTask/>}/>
+            <Route path='assigntask' element={<AssignTask/>}/>
+            <Route path='assignedtask' element={<AssignedTask/>}/>
+          </Route>
+        </Routes>
+      </BrowserRouter>
   );
 }
 

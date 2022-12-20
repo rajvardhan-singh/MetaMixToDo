@@ -7,11 +7,13 @@ const TaskForm = () => {
    
   //state declaration
   const [flag,setFlag] = useState(false)
-  const [taskname,setTaskname]= useState("Enter Task")
-  const [userTo,setUserto] = useState("Enter User")
+  const [taskname,setTaskname]= useState("")
+  const [to,setTo] = useState("")
+  const assignUser = to
+
   const date = useSelector(state=>state.user.date)
-  const userBy = useSelector(state=>state.user.username)
-  const currentUser= useSelector(state=>state.user.username)
+  const by = useSelector(state=>state.user.user)
+   
   
   const dispatch =useDispatch()
 
@@ -21,10 +23,10 @@ const TaskForm = () => {
   }
   
   //on For Me button Click
-  const onForMeButton=()=>{
-    setUserto(currentUser)
-    submitTask()
-  }
+  // const onForMeButton=()=>{
+  //   setUserto(currentUser)
+  //   submitTask()
+  // }
 
   //on For other button
   const onForOtherButton=()=>{
@@ -33,7 +35,7 @@ const TaskForm = () => {
 
    //on username input chnage
    const onUsernameChange=(event)=>{
-    setUserto(event.target.value)
+    setTo(event.target.value)
   }
 
   //on Save Button
@@ -48,31 +50,33 @@ const TaskForm = () => {
 
     dispatch(addTask(
       { taskname:taskname,
-        userBy:userBy,
-        userTo:userTo,
-        date:date  
+        by:by,
+        to:!flag?by:assignUser,
+        date:date ,
+        status:"pending" 
       }))
     
       //setting user and taskname to default again
-    setUserto("")
-    setTaskname("")
+    //setTo("")
+    //setTaskname("")
   }
 
 
   return (
 
     <form onSubmit={submitTask}>
-      <input type='text' onChange={onTasknameChange} value={taskname}/>
-      <button onClick={onForMeButton}>For Me</button>
-      <button onClick={onForOtherButton}>For Other</button>
+      <input type='text' onChange={onTasknameChange} />
+      <button type="submit">For Me</button>
+      <button type="button" onClick={onForOtherButton}>For Other</button>
 
-      /*if task for other user render this*/
+      
       {flag &&
         <> 
-          <input type='text' onChange={onUsernameChange} value={userTo}/>
+          <input type='text' onChange={onUsernameChange}/>
           <button onClick={onSaveButton}>Save</button>
         </>
-      }
+}
+      
     </form>
 
   )

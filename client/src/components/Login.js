@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
+import React, {  useState } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 
 import Card from './Card';
 import classes from './Login.module.css';
 import Button from './Button';
 import { logIn } from '../redux/actions';
+import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
+  
   const [enteredEmail, setEnteredEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState();
   const [enteredPassword, setEnteredPassword] = useState('');
@@ -17,7 +19,13 @@ const Login = (props) => {
   const [error,setError] = useState(false)
 
   const dispatch = useDispatch()
+  const  navigate = useNavigate()
   const isValidLogin = useSelector(state=>state.isValidLogin)
+
+  // useEffect(
+  //   ()=>console.log("rerender"),
+  //   [isValidLogin]
+  // )
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
@@ -54,6 +62,11 @@ const Login = (props) => {
     setUserIsValid(user!=="")
   }
 
+  const signUpHandler=()=>{
+    navigate('/signup')
+  }
+
+
   //on submitting form
   const submitHandler = (event) => {
 
@@ -69,20 +82,20 @@ const Login = (props) => {
     
     //if valid detail go to add task page
     if(isValidLogin===true){
-
+      navigate('/addtask')
     }
-
-    //if invalid detail show error message
-    setError(true)
 
 
    // props.onLogin(enteredEmail, enteredPassword);
     
   };
 
+
+
   return (
     <Card className={classes.login}>
       <form onSubmit={submitHandler}>
+
         <div
           className={`${classes.control} ${
             emailIsValid === false ? classes.invalid : ''
@@ -103,11 +116,11 @@ const Login = (props) => {
             userIsValid === false ? classes.invalid : ''
           }`}
         >
-          <label htmlFor="username">E-Mail</label>
+          <label htmlFor="username">UserName</label>
           <input
             type="text"
             id="username"
-            value={enteredEmail}
+            value={user}
             onChange={usernameChangeHandler}
             onBlur={validateUsernameHandler}
           />
@@ -133,8 +146,14 @@ const Login = (props) => {
             Login
           </Button>
         </div>
+
+        <div className={classes.actions}>
+          <Button type="button" className={classes.btn} onClick={signUpHandler}>
+            SignUp
+          </Button>
+        </div>
         
-        {error && 
+        {!isValidLogin && 
             <div>
               <h3>Sorry,wrong detail entered!</h3>
             </div>

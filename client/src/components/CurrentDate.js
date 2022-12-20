@@ -1,11 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { dateTask } from '../redux/actions'
 
 const CurrentDate = () => {
-  const currentTask =new Date.toString()
+  const [currentDates,setCurrentDates] = useState(new Date().toDateString())  
+  const dispatch = useDispatch()
+
+  const datePickHandler=(event)=>{
+      setCurrentDates(event.target.value)
+      dispatch(dateTask(currentDates))
+  }
   return (
+
+   
     <div>
-      <h3>{currentTask}</h3>
-      <input type='date'>date-Picker</input>
+      <h3>{currentDates}</h3>
+      <input type='date' onChange={datePickHandler}/>
     </div>
   )
 }

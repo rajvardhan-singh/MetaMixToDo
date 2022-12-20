@@ -1,6 +1,6 @@
 import React from 'react'
 
-const userReducer = (state={},action) => {
+const userReducer = (state={date:"25 Dec",user:"Raj"},action) => {
     switch (action.type) {
          
       

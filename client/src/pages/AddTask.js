@@ -1,4 +1,5 @@
 import React from 'react'
+import CurrentDate from '../components/CurrentDate'
 import Header from '../components/Header'
 import Navbar from '../components/Navbar'
 import TaskForm from '../components/TaskForm'
@@ -8,6 +9,7 @@ const AddTask = () => {
     <div>
       <Header/>
       <Navbar/>
+      <CurrentDate/>
       <TaskForm/>
     </div>
   )

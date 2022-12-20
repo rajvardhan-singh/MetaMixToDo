@@ -1,13 +1,34 @@
 import React from 'react'
 import TaskList from './TaskList'
+import { useSelector } from 'react-redux'
+import {useDispatch} from 'react-redux'
+import { changeTab } from '../redux/actions'
 
 const Appoint = () => {
+
+  const currentTab =useSelector(state=>state.currentTab)
+  const dispatch = useDispatch()
+
+  
+  
+  const onActive=()=>{
+    dispatch(changeTab("ACTIVE"))
+  }
+
+  const onPending=()=>{
+    dispatch(changeTab("PENDING"))
+  }
+
+  const onDone=()=>{
+    dispatch(changeTab("DONE"))
+  }
+
   return (
     <div>
-      <button>Active</button>
-      <button>Pending</button>
-      <button>Done</button>
-      <TaskList/>
+      <button onClick={onActive}>Active</button>
+      <button onClick={onPending}>Pending</button>
+      <button onClick={onDone}>Done</button>
+      <TaskList tab={currentTab} flag={true} type="appoint"/>
     </div>
   )
 }

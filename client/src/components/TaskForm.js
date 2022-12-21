@@ -9,10 +9,11 @@ const TaskForm = () => {
   const [flag,setFlag] = useState(false)
   const [taskname,setTaskname]= useState("")
   const [to,setTo] = useState("")
-  const assignUser = to
+  var isUser= false
+
 
   const date = useSelector(state=>state.user.date)
-  const by = useSelector(state=>state.user.user)
+  const user = useSelector(state=>state.user.user)
    
   
   const dispatch =useDispatch()
@@ -22,11 +23,12 @@ const TaskForm = () => {
     setTaskname(event.target.value)
   }
   
-  //on For Me button Click
-  // const onForMeButton=()=>{
-  //   setUserto(currentUser)
-  //   submitTask()
-  // }
+  //on ForMebutton Click
+  const onForMeHandler=(event)=>{
+    // console.log(setTo(user))
+    isUser =true
+    submitTask(event)
+  }
 
   //on For other button
   const onForOtherButton=()=>{
@@ -38,44 +40,47 @@ const TaskForm = () => {
     setTo(event.target.value)
   }
 
-  //on Save Button
-  const onSaveButton=(event)=>{
-    submitTask()
+  // on save
+  const onSave=(event)=>{
+    isUser =false
+    submitTask(event)
   }
+
 
   //on Form submit
   const submitTask=(event)=>{
     //Api call
     event.preventDefault()
-
+    
+    
     dispatch(addTask(
       { taskname:taskname,
-        by:by,
-        to:!flag?by:assignUser,
+        by:user,
+        to:isUser?user:to,
         date:date ,
         status:"pending" 
       }))
     
       //setting user and taskname to default again
-    //setTo("")
-    //setTaskname("")
+    setTo("")
+    setTaskname("")
   }
 
 
   return (
 
     <form onSubmit={submitTask}>
-      <input type='text' onChange={onTasknameChange} />
-      <button type="submit">For Me</button>
+      <input type='text' onChange={onTasknameChange} placeholder="Add Task" value={taskname}/>
+      <button type="button" onClick={onForMeHandler}>For Me</button>
       <button type="button" onClick={onForOtherButton}>For Other</button>
 
       
       {flag &&
         <> 
-          <input type='text' onChange={onUsernameChange}/>
-          <button onClick={onSaveButton}>Save</button>
+          <input type='text' onChange={onUsernameChange} placeholder="User Name" value={to}/>
+          <button type ='button' onClick={onSave}>Save</button>
         </>
-}
+      }  
       
     </form>
 

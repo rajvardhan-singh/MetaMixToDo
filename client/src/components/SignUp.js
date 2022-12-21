@@ -1,11 +1,12 @@
 import React, {  useState } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 
-import { logIn } from '../redux/actions';
+import { signUp } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
 import Card from './Card';
 import classes from './Login.module.css';
 import Button from './Button';
+ 
 
 
 const SignUp = () => {
@@ -20,12 +21,9 @@ const SignUp = () => {
   
     const dispatch = useDispatch()
     const  navigate = useNavigate()
-    const isValidLogin = useSelector(state=>state.isValidLogin)
+    const isValidSignup = useSelector(state=>state.isValidLogin)
   
-    // useEffect(
-    //   ()=>console.log("rerender"),
-    //   [isValidLogin]
-    // )
+     
   
     const emailChangeHandler = (event) => {
       setEnteredEmail(event.target.value);
@@ -62,9 +60,7 @@ const SignUp = () => {
       setUserIsValid(user!=="")
     }
   
-    const signUpHandler=()=>{
-      navigate('/signup')
-    }
+    
   
   
     //on submitting form
@@ -73,18 +69,18 @@ const SignUp = () => {
       event.preventDefault();
   
       //api call
-      dispatch(logIn({
+      dispatch(signUp({
         email:enteredEmail,
         password:enteredPassword,
         username:user,
         date:new Date().toDateString()
-      }))
+      })).then(()=>{
+        //if valid detail go to add task page
+      if(!isValidSignup) navigate('/addtask')
+      else setError(true)
+      })
       
-      //if valid detail go to add task page
-      if(isValidLogin===true){
-        navigate('/addtask')
-      }
-  
+       
   
      // props.onLogin(enteredEmail, enteredPassword);
       
@@ -141,21 +137,17 @@ const SignUp = () => {
           onBlur={validatePasswordHandler}
         />
       </div>
-      <div className={classes.actions}>
-        <Button type="submit" className={classes.btn} disabled={!formIsValid}>
-          Login
-        </Button>
-      </div>
+       
 
       <div className={classes.actions}>
-        <Button type="button" className={classes.btn} onClick={signUpHandler}>
+        <Button type="submit" className={classes.btn} disabled={!formIsValid}>
           SignUp
         </Button>
       </div>
       
-      {!isValidLogin && 
+      {error && 
           <div>
-            <h3>Sorry,wrong detail entered!</h3>
+            <h3>Email alredy Exist</h3>
           </div>
       }
 

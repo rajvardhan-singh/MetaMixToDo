@@ -6,15 +6,16 @@ import tabReducer from './reducers/tabReducer';
 import  userReducer  from './reducers/userReducer';
 import  taskReducer from './reducers/taskReducer'
 import isValidLogin from './reducers/isValidLogin';
+import isValidSignup from './reducers/isValidSignup';
 
-//import { todosReducers } from './reducers/todosReducer';
-//import { tabReducer } from './reducers/tabReducer';
+
 
 const reducer = combineReducers({
     user:userReducer,
     task:taskReducer,
     isValidLogin:isValidLogin,
-    currentTab:tabReducer
+    currentTab:tabReducer,
+    isValidSignup:isValidSignup
 })
 
 

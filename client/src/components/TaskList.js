@@ -2,6 +2,7 @@ import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteTask, toActive, toDone, toPending } from '../redux/actions'
 
+
 const TaskList = (props) => {
 
   const task = useSelector(state=>state.task)

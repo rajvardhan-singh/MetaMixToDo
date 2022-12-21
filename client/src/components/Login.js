@@ -8,30 +8,32 @@ import { logIn } from '../redux/actions';
 import { useNavigate } from 'react-router-dom';
 
 const Login = (props) => {
-  
+
   const [enteredEmail, setEnteredEmail] = useState('');
   const [emailIsValid, setEmailIsValid] = useState();
   const [enteredPassword, setEnteredPassword] = useState('');
   const [passwordIsValid, setPasswordIsValid] = useState();
-  const [user,setUser]=useState("")
+  const [enteredUser,setEnteredUser]=useState("")
   const [userIsValid,setUserIsValid] =useState(true)
   const [formIsValid, setFormIsValid] = useState(false);
+
   const [error,setError] = useState(false)
 
   const dispatch = useDispatch()
   const  navigate = useNavigate()
   const isValidLogin = useSelector(state=>state.isValidLogin)
 
-  // useEffect(
-  //   ()=>console.log("rerender"),
-  //   [isValidLogin]
-  // )
+  // useEffect(()=>{
+  //   if(!isValidLogin){
+  //     setError(true)
+  //   }
+  // },[isValidLogin])
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
 
     setFormIsValid(
-      event.target.value.includes('@') && enteredPassword.trim().length > 6 && user!==""
+      event.target.value.includes('@') && enteredPassword.trim().length > 6 && enteredUser!==""
     );
   }
 
@@ -39,7 +41,7 @@ const Login = (props) => {
     setEnteredPassword(event.target.value);
 
     setFormIsValid(
-      event.target.value.trim().length > 6 && enteredEmail.includes('@') && user!==""
+      event.target.value.trim().length > 6 && enteredEmail.includes('@') && enteredUser!==""
     );
   };
 
@@ -52,14 +54,14 @@ const Login = (props) => {
   };
 
   const usernameChangeHandler=(event)=>{
-      setUser(event.target.value)
+      setEnteredUser(event.target.value)
       setFormIsValid(
         event.target.value!=="" && enteredEmail.includes('@') && enteredPassword.trim().length > 6
       )
   }
 
   const validateUsernameHandler=(event)=>{
-    setUserIsValid(user!=="")
+    setUserIsValid(enteredUser!=="")
   }
 
   const signUpHandler=()=>{
@@ -76,14 +78,16 @@ const Login = (props) => {
     dispatch(logIn({
       email:enteredEmail,
       password:enteredPassword,
-      username:user,
-      date:new Date().toDateString()
-    }))
+      username:enteredUser,
+      // date:new Date().toDateString()
+    })).then(()=>{
+
+      //if valid detail go to add task page
+      if(!isValidLogin) navigate('/addtask')
+      else setError(true)
+    })
     
-    //if valid detail go to add task page
-    if(isValidLogin===true){
-      navigate('/addtask')
-    }
+    
 
 
    // props.onLogin(enteredEmail, enteredPassword);
@@ -120,7 +124,7 @@ const Login = (props) => {
           <input
             type="text"
             id="username"
-            value={user}
+            value={enteredUser}
             onChange={usernameChangeHandler}
             onBlur={validateUsernameHandler}
           />
@@ -153,7 +157,7 @@ const Login = (props) => {
           </Button>
         </div>
         
-        {!isValidLogin && 
+        {error && 
             <div>
               <h3>Sorry,wrong detail entered!</h3>
             </div>

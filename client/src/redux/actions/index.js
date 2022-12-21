@@ -1,48 +1,64 @@
 import axios from 'axios'
-import { Navigate, useNavigate } from 'react-router-dom'
+import {  useNavigate } from 'react-router-dom'
 
 //backened server
-const API_URL ="https//:192.168.0.34:8000"
+const API_URL ="http://192.168.0.34:8000"
+
 
 //All API call
 
 
 //on login
 export const logIn=(data)=>async(dispatch)=>{
+    // const navigate  =useNavigate()
     try{
         console.log(data)
-       const res = await axios.post(`${API_URL}/login`,data);
-
-        if(res.data==="ERROR"){
-            dispatch({type:"VALID_LOGIN"})
-        }else{
-            dispatch({type:"LOG_IN", payLoad:res.data});
-        }
-        dispatch({type:"VALID_LOGIN"})
-        
+        const res = await axios.post(`${API_URL}/login`,data);
+        console.log(res.data)
+        dispatch({type:"LOG_IN", payLoad:res.data});
     }catch (error) {
         console.log("Error")
+        dispatch({type:"VALID_LOGIN"})
+         
     }
 }
 
 //on sigin
 export const signUp=(data)=>async(dispatch)=>{
     try{
+        console.log(data)
         const res = await axios.post(`${API_URL}/signup`,data);
+        
         dispatch({type:"SIGN_UP", payLoad:res.data});
     }catch (error) {
         console.log("Error")
+        dispatch({type:"VALID_SIGNUP"})
     }
 }
+
+export const logOut=()=>async(dispatch)=>{
+    try{
+        // const res = await axios.post(`${API_URL}/signup`,data);
+        // console.log(data)
+        dispatch({type:"LOG_OUT"});
+    }catch (error) {
+         console.log("Error")
+    }
+}
+
+
 
 //new task add 
 export const addTask=(data)=>async(dispatch)=>{
     try{
-        // console.log(data)
+        console.log(data)
         const res = await axios.put(`${API_URL}/addtask`,data);
+        console.log(res.data)
         dispatch({type:"ADD_TASK", payLoad:data});
     }catch (error) {
         console.log("Error")
+        console.log(data)
+        dispatch({type:"ADD_TASK", payLoad:data});
     }
 }
 

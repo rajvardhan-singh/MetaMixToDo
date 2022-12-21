@@ -26,8 +26,9 @@ const Appointed = () => {
 
   return (
     <div>
-      <button onClick={onActive}>Active</button>
-      <button onClick={onPending}>Pending</button>
+      {/* <button>Comment Button</button> */}
+      <button className='appointedBtn' onClick={onActive}>Active</button>
+      {/* <button onClick={onPending}>Pending</button> */}
       <button onClick={onDone}>Done</button>
       <TaskList tab={currentTab} flag={true} type="appointed"/>
     </div>

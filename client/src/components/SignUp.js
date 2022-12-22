@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 
 import { signUp } from '../redux/actions';
@@ -21,9 +21,12 @@ const SignUp = () => {
   
     const dispatch = useDispatch()
     const  navigate = useNavigate()
-    const isValidSignup = useSelector(state=>state.isValidLogin)
+    const isValidSignup = useSelector(state=>state.isValidSignup)
   
-     
+    useEffect(()=>{
+      if(isValidSignup) navigate('/addtask')
+      if( isValidSignup!=null && !isValidSignup) setError(true)
+     },[isValidSignup])
   
     const emailChangeHandler = (event) => {
       setEnteredEmail(event.target.value);
@@ -60,7 +63,7 @@ const SignUp = () => {
       setUserIsValid(user!=="")
     }
   
-    
+     
   
   
     //on submitting form
@@ -73,11 +76,14 @@ const SignUp = () => {
         email:enteredEmail,
         password:enteredPassword,
         username:user,
-        date:new Date().toDateString()
+        // date:new Date().toDateString()
       })).then(()=>{
         //if valid detail go to add task page
-      if(!isValidSignup) navigate('/addtask')
-      else setError(true)
+        // if(isValidSignup) {
+        //   console.log("inside the component")
+        //   navigate('/addtask')
+        // }
+        // else setError(true)
       })
       
        

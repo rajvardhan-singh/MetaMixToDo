@@ -1,4 +1,6 @@
 import React from 'react'
+import '../css/myTask.css'
+import '../css/taskList.css' 
 import TaskList from './TaskList'
 import { useSelector } from 'react-redux'
 import {useDispatch} from 'react-redux'
@@ -24,10 +26,12 @@ const Appoint = () => {
   }
 
   return (
-    <div>
-      <button onClick={onActive}>Active</button>
-      <button onClick={onPending}>Pending</button>
-      <button onClick={onDone}>Done</button>
+    <div className='task'>
+      <div className='tab'>
+      <button className='ABtn' onClick={onActive}>Active</button>
+      <button className='PBtn' onClick={onPending}>Pending</button>
+      <button className='DBtn' onClick={onDone}>Done</button>
+      </div>
       <TaskList tab={currentTab} flag={true} type="appoint"/>
     </div>
   )

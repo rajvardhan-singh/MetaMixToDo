@@ -19,7 +19,6 @@ export const logIn=(data)=>async(dispatch)=>{
     }catch (error) {
         console.log("Error")
         dispatch({type:"VALID_LOGIN"})
-         
     }
 }
 
@@ -104,9 +103,6 @@ export const toDone=(taskname)=>async(dispatch)=>{
         console.log("ERROR")
     }
 }
-
-
- 
 
 
 //Toggle To Delete

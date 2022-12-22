@@ -2,9 +2,9 @@ import mongoose from "mongoose";
 
 
 const TodoSchema = new mongoose.Schema({
-    taskname: {
+    data: {
         type: String,
-        required: true
+        required:true 
     },
     active:{
             type:Boolean,

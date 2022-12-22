@@ -87,9 +87,6 @@ const Login = (props) => {
       else setError(true)
     })
     
-    
-
-
    // props.onLogin(enteredEmail, enteredPassword);
     
   };

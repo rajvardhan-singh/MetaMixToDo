@@ -34,10 +34,11 @@ export const signup = async (req, res) => {
 
   try {
     const oldUser = await UserModal.findOne({ email });
-    const oldUsername=await UserModal.findOne({username});
     if (oldUser) return res.status(400).json({ message: "User already exists" });
-    if(oldUsername) return res.status(400).json({message:"This username is already taken try another one"});
 
+    const oldUsername=await UserModal.findOne({username});
+    if (oldUsername) return res.status(400).json({ message: "Username already exists try another one" });
+    
     const hashedPassword = await bcrypt.hash(password, 12);
 
     const result = await UserModal.create({ email, password: hashedPassword,username });

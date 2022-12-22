@@ -1,0 +1,45 @@
+.header{
+   display:flex; 
+   align-items: center;
+   justify-content: space-around;
+   background-color: #00807f;
+   position: relative;
+   height: 100px;
+}
+
+.metalogo{
+    height: 90px;
+   
+    margin-right: 200px;
+}
+
+.title{
+    font-size:80px ;
+   color:#FEFCF3;
+   font-family:'Courier New';
+   margin-left: 240px;
+}
+
+.header div{
+    display: flex;
+    margin-left: 200px;
+}
+
+i{
+    margin-right: 20px;
+}
+
+.LogBtn{
+    padding: 6px 16px;
+    margin-left: 20px;
+    cursor: pointer;
+    color: black;
+    background-color: white;
+    border-radius: 4px;
+    border: none;
+    transition-duration: 0.8s;
+}
+.LogBtn:hover{
+    color: white;
+    background-color: red;
+}

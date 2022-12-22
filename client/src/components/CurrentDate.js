@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { dateTask } from '../redux/actions'
+import '../css/currentDate.css'
 
 const CurrentDate = () => {
   const [currentDates,setCurrentDates] = useState(new Date().toDateString())  
@@ -13,8 +14,8 @@ const CurrentDate = () => {
   return (
 
    
-    <div>
-      <h3>{currentDates}</h3>
+    <div className="date">
+      <h1>{currentDates}</h1>
       <input type='date' onChange={datePickHandler}/>
     </div>
   )

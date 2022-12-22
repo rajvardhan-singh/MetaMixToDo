@@ -1,0 +1,26 @@
+
+.tasklist{
+    display: flex;
+    justify-content: center;
+    bottom: 250px;
+}
+
+.tasklist h3{
+    margin: 10px;
+    font-family: 'poppins' sans-serif;
+    font-weight: lighter;
+    font-size: 18px;
+}
+
+.tasklist button {
+    margin: 10px;
+    padding: 2px 6px;
+    cursor: pointer;
+    color:black;
+    background-color:aquamarine;
+    text-align:center;
+    border-style: hidden;
+    border-radius:4px;
+    font-size:16px;
+   
+}

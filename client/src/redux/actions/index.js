@@ -2,7 +2,8 @@ import axios from 'axios'
 import {  useNavigate } from 'react-router-dom'
 
 //backened server
-const API_URL ="http://192.168.0.34:8000"
+// const API_URL ="http://192.168.0.34:8000"
+const API_URL= "82"
 
 
 //All API call

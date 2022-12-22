@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {useSelector} from 'react-redux'
 import { addTask } from '../redux/actions'
 import {useDispatch} from 'react-redux'
+import '../css/taskForm.css'
 
 const TaskForm = () => {
    
@@ -69,16 +70,16 @@ const TaskForm = () => {
 
   return (
 
-    <form onSubmit={submitTask}>
-      <input type='text' onChange={onTasknameChange} placeholder="Add Task" value={taskname}/>
-      <button type="button" onClick={onForMeHandler}>For Me</button>
-      <button type="button" onClick={onForOtherButton}>For Other</button>
+    <form onSubmit={submitTask} className='form'>
+      <input  type='text' class="taskText" onChange={onTasknameChange} placeholder="Add Task" value={taskname}/>
+      <button  className='forMeBtn' type="button" onClick={onForMeHandler}>For Me</button>
+      <button  className='forOtherBtn' type="button" onClick={onForOtherButton}>For Other</button>
 
       
       {flag &&
         <> 
-          <input type='text' onChange={onUsernameChange} placeholder="User Name" value={to}/>
-          <button type ='button' onClick={onSave}>Save</button>
+          <input type='text' className='user' onChange={onUsernameChange} placeholder="User Name" value={to}/>
+          <button className='saveBtn' type ='button' onClick={onSave}>Save</button>
         </>
       }  
       

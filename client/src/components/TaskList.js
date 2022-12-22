@@ -1,4 +1,5 @@
 import React from 'react'
+import '../css/taskList.css' 
 import { useDispatch, useSelector } from 'react-redux'
 import { deleteTask, toActive, toDone, toPending } from '../redux/actions'
 
@@ -40,17 +41,17 @@ const TaskList = (props) => {
     <ul>
       {getTodos().map(task=>(
 
-          <div>
+          <div className='tasklist'>
 
             <h3>{task.taskname}</h3>
             {props.flag && <h3>{props.type=="appoint"?task.to:task.by}</h3>}
 
             
-            {task.status!=='active' && <button onClick={changeToActive(task.taskname)}>Active</button>}
-            {task.status!=='pending' && <button onClick={changeToPending(task.taskname)}>Pending</button>}
-            {task.status!=='done' && <button onClick={changeToDone(task.taskname)}>Done</button>}
+            {task.status!=='active' && <button className='activeBtn' onClick={changeToActive(task.taskname)}>Active</button>}
+            {task.status!=='pending' && <button className='pendingBtn' onClick={changeToPending(task.taskname)}>Pending</button>}
+            {task.status!=='done' && <button className='doneBtn' doneBtn onClick={changeToDone(task.taskname)}>Done</button>}
              
-            <button onClick={changeToDelete(task.taskname)}>Delete</button>
+            <button className='DeleteBtn' onClick={changeToDelete(task.taskname)}>Delete</button>
           </div>
        ))
 

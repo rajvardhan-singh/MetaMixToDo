@@ -1,0 +1,21 @@
+.date{
+    display:inline-block;
+    /* justify-content: center; */
+    position: relative;
+    margin-left: 550px;
+    bottom:380px;
+}
+
+.date input{
+    margin-left: 180px;
+    height: 20px;
+    margin-top: 10px;
+    color-scheme:
+
+}
+
+.date h1{
+    font-size: 35px;
+    font-family:cursive;
+    
+}

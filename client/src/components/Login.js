@@ -1,4 +1,4 @@
-import React, {  useState } from 'react';
+import React, {  useState, useEffect} from 'react';
 import { useDispatch,useSelector } from 'react-redux';
 
 import Card from './Card';
@@ -23,11 +23,10 @@ const Login = (props) => {
   const  navigate = useNavigate()
   const isValidLogin = useSelector(state=>state.isValidLogin)
 
-  // useEffect(()=>{
-  //   if(!isValidLogin){
-  //     setError(true)
-  //   }
-  // },[isValidLogin])
+  useEffect(()=>{
+    if(isValidLogin) navigate('/addtask')
+    if( isValidLogin!=null && !isValidLogin) setError(true)
+   },[isValidLogin])
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
@@ -82,12 +81,12 @@ const Login = (props) => {
       // date:new Date().toDateString()
     })).then(()=>{
 
-      //if valid detail go to add task page
-      if(!isValidLogin) navigate('/addtask')
-      else setError(true)
+      // //if valid detail go to add task page
+      // if(!isValidLogin) navigate('/addtask')
+      // else setError(true)
     })
     
-    
+     
 
 
    // props.onLogin(enteredEmail, enteredPassword);

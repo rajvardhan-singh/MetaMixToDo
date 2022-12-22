@@ -2,7 +2,7 @@
 
 const userReducer = (state={},action) => {
     switch (action.type) {
-        case "LOG_IN":
+        case "SET_USER":
             return {
                 user:action.payLoad.username,
                 email:action.payLoad.email,
@@ -18,7 +18,7 @@ const userReducer = (state={},action) => {
                 date:new Date()
             }
 
-        case "LOG_OUT":
+        case "LOG_OUT_USER":
             return {}
 
         default:

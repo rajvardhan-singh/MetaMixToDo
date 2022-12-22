@@ -1,8 +1,9 @@
 import axios from 'axios'
 import {  useNavigate } from 'react-router-dom'
-
-//backened server
+// 
+// backened server
 const API_URL ="http://192.168.0.34:8000"
+// const API_URL ="180"
 
 
 //All API call
@@ -15,10 +16,12 @@ export const logIn=(data)=>async(dispatch)=>{
         console.log(data)
         const res = await axios.post(`${API_URL}/login`,data);
         console.log(res.data)
+        dispatch({type:"VALID_LOGIN"})
         dispatch({type:"LOG_IN", payLoad:res.data});
+        dispatch({type:"SET_USER", payLoad:data});
     }catch (error) {
         console.log("Error")
-        dispatch({type:"VALID_LOGIN"})
+        dispatch({type:"INVALID_LOGIN"})
          
     }
 }
@@ -28,35 +31,40 @@ export const signUp=(data)=>async(dispatch)=>{
     try{
         console.log(data)
         const res = await axios.post(`${API_URL}/signup`,data);
-        
-        dispatch({type:"SIGN_UP", payLoad:res.data});
-    }catch (error) {
-        console.log("Error")
+        console.log(res.data)
         dispatch({type:"VALID_SIGNUP"})
+        dispatch({type:"SIGN_UP", payLoad:data});
+    }catch (error) {
+        console.log(error)
+        dispatch({type:"INVALID_SIGNUP"})
+         
     }
 }
 
+//Logout
 export const logOut=()=>async(dispatch)=>{
     try{
-        // const res = await axios.post(`${API_URL}/signup`,data);
-        // console.log(data)
-        dispatch({type:"LOG_OUT"});
+        dispatch({type:"LOG_OUT_USER"});
+        dispatch({type:"LOG_OUT_TASK"});
+        dispatch({type:"LOG_OUT_LOGIN"})
+        dispatch({type:"LOG_OUT_SIGNUP"})
+
     }catch (error) {
-         console.log("Error")
+        console.log("Error")
     }
 }
 
 
 
-//new task add 
+//add task
 export const addTask=(data)=>async(dispatch)=>{
     try{
         console.log(data)
-        const res = await axios.put(`${API_URL}/addtask`,data);
+        const res = await axios.post(`${API_URL}/addtask`,data);
         console.log(res.data)
         dispatch({type:"ADD_TASK", payLoad:data});
     }catch (error) {
-        console.log("Error")
+        console.log(error)
         console.log(data)
         dispatch({type:"ADD_TASK", payLoad:data});
     }
@@ -104,10 +112,6 @@ export const toDone=(taskname)=>async(dispatch)=>{
         console.log("ERROR")
     }
 }
-
-
- 
-
 
 //Toggle To Delete
 export const deleteTask=(data)=>async(dispatch)=>{

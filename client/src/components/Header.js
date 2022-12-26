@@ -1,7 +1,7 @@
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
-import { logOut} from '../redux/actions'
+import { signUp } from '../redux/actions'
 import '../css/header.css'
 
 const Header = () => {
@@ -10,7 +10,7 @@ const Header = () => {
   const dispatch = useDispatch()
 
   const logOutHandler=()=>{
-    dispatch(logOut())
+    dispatch(signUp())
     navigate('/')
   }
   

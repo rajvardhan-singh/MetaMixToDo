@@ -55,7 +55,7 @@ const TaskForm = () => {
     
     
     dispatch(addTask(
-      { data:taskname,
+      { taskname:taskname,
         by:user,
         to:isUser?user:to,
         date:date ,

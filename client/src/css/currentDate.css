@@ -1,5 +1,5 @@
 .date{
-    display:inline-block;
+    display:flex;
     /* justify-content: center; */
     position: relative;
     margin-left: 550px;
@@ -7,15 +7,30 @@
 }
 
 .date input{
-    margin-left: 180px;
+    margin-left: 100px;
     height: 20px;
     margin-top: 10px;
-    color-scheme:
-
+    
 }
 
 .date h1{
     font-size: 35px;
     font-family:cursive;
     
+}
+@media only screen and (max-width: 768px) and (min-width: 400px){
+
+    .date{
+        display: block;
+        justify-content: center;
+        align-items: center;
+        margin-top: 400px;
+        margin-right: 1px;
+        margin-left: 100px;
+
+    }
+   .date h1{
+        font-size: 15px;
+
+    }
 }

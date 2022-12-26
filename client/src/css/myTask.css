@@ -52,3 +52,9 @@
     box-shadow: 2px 2px rgba(110, 117, 124, 0.24), ;
 
   }
+
+  @media only screen and (max-width: 768px) and (min-width: 400px){
+    .task{
+      margin-left:-20px;
+    }
+  }

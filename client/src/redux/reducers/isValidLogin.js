@@ -1,14 +1,10 @@
 import React from 'react'
 
-const isValidLogin = (state=null,action) => {
+const isValidLogin = (state=true,action) => {
 
    switch (action.type) {
-    case "INVALID_LOGIN":
-        return false
     case "VALID_LOGIN":
-        return true
-    case "LOG_OUT_LOGIN":
-        return null
+        return false
     default:
         return state
    }

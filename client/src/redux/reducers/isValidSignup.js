@@ -1,16 +1,11 @@
 import React from 'react'
 
-const isValidSignup = (state=null,action) => {
+const isValidSignup = (state=true,action) => {
 
    switch (action.type) {
-    case "INVALID_SIGNUP":
-        console.log("inside isValidSignup")
-        return false
     case "VALID_SIGNUP":
-        console.log("makle valid")
-        return true
-    case "LOG_OUT_SIGNUP":
-        return null
+        return false
+   
     default:
         return state
    }

@@ -20,20 +20,20 @@ const TaskList = (props) => {
     }
   }
 
-  const changeToActive=(data)=>{
-      dispatch(toActive(data))
+  const changeToActive=(taskname)=>{
+      dispatch(toActive(taskname))
   }
 
-  const changeToPending=(data)=>{
-      dispatch(toPending(data))
+  const changeToPending=(taskname)=>{
+      dispatch(toPending(taskname))
   }
   
-  const changeToDone=(data)=>{
-     dispatch(toDone(data))
+  const changeToDone=(taskname)=>{
+     dispatch(toDone(taskname))
   }
 
-  const changeToDelete=(data)=>{
-      dispatch(deleteTask(data))
+  const changeToDelete=(taskname)=>{
+      dispatch(deleteTask(taskname))
   }
 
   return (
@@ -43,15 +43,15 @@ const TaskList = (props) => {
 
           <div className='tasklist'>
 
-            <h3>{task.data}</h3>
+            <h3>{task.taskname}</h3>
             {props.flag && <h3>{props.type=="appoint"?task.to:task.by}</h3>}
 
             
-            {task.status!=='active' && <button className='activeBtn' onClick={changeToActive(task.data)}>Active</button>}
-            {task.status!=='pending' && <button className='pendingBtn' onClick={changeToPending(task.data)}>Pending</button>}
-            {task.status!=='done' && <button className='doneBtn' doneBtn onClick={changeToDone(task.data)}>Done</button>}
+            {task.status!=='active' && <button className='activeBtn' onClick={changeToActive(task.taskname)}>Active</button>}
+            {task.status!=='pending' && <button className='pendingBtn' onClick={changeToPending(task.taskname)}>Pending</button>}
+            {task.status!=='done' && <button className='doneBtn' doneBtn onClick={changeToDone(task.taskname)}>Done</button>}
              
-            <button className='DeleteBtn' onClick={changeToDelete(task.data)}>Delete</button>
+            <button className='DeleteBtn' onClick={changeToDelete(task.taskname)}>Delete</button>
           </div>
        ))
 

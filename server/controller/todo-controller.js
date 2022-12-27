@@ -1,14 +1,16 @@
 import Todo from '../model/Todo.js';
+import User from '../model/User.js';
 
 export const addTodo = async (request, response) => {
+    // console.log(request.body);
+    const toId=User.findOne({email:request.body.to});
     try {
         const newTodo = await Todo.create({
             data: request.body.data,
             createdAt: new Date().toISOString(),
-            to:"other",
+            to:request.body.to,
             by:request.userId
         });
-        console.log(request.body);
         await newTodo.save();
 
         return response.status(200).json(newTodo);
@@ -17,7 +19,18 @@ export const addTodo = async (request, response) => {
     }
 }
 
-export const getAllTodos = async (request, response) => {
+export const getMyTodos = async (request, response) => {
+    const by=request.userId;
+    try {
+        const todos = await Todo.find({by}).sort({ 'createdAt': -1 });
+        return response.status(200).json(todos);
+        
+    } catch (error) {
+        return response.status(500).json(error.message);
+    }
+}
+
+export const getAssignTodos = async (request, response) => {
     try {
         const todos = await Todo.find({}).sort({ 'createdAt': -1 });
 
@@ -26,6 +39,18 @@ export const getAllTodos = async (request, response) => {
         return response.status(500).json(error.message);
     }
 }
+
+export const getAssignedTodos = async (request, response) => {
+    try {
+        const todos = await Todo.find({}).sort({ 'createdAt': -1 });
+
+        return response.status(200).json(todos);
+    } catch (error) {
+        return response.status(500).json(error.message);
+    }
+}
+
+
 
 export const toggleDone = async (request, response) => {
     try {

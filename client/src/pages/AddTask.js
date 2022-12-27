@@ -1,14 +1,12 @@
 import React from 'react'
-import CurrentDate from '../components/CurrentDate'
-import Header from '../components/Header'
-import Navbar from '../components/Navbar'
-import TaskForm from '../components/TaskForm'
+import CurrentDate from '../components/CurrentDate/CurrentDate'
+import Navbar from '../components/Navbar/SideBar'
+import TaskForm from '../components/Form/TaskForm'
 
 const AddTask = () => {
   return (
     <div>
-      <Header/>
-      <Navbar/>
+      {/* <Navbar/> */}
       <CurrentDate/>
       <TaskForm/>
     </div>

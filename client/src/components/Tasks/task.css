@@ -1,0 +1,50 @@
+.edit-todo {
+    width: 85%;
+    font-size: 16px;
+    color: #FFFFFF;
+    background-color: transparent;
+    border: none;
+    border-bottom: 1px solid #FFFFFF;
+}
+
+.task {
+    position: relative;
+    top:3rem;
+    left: 18rem;
+    background-color: #4c5965;
+    padding: 15px;
+    margin:5px;
+    width: 405px;
+    overflow-x: hidden;
+    border-radius: 5px;
+    cursor: pointer;
+    border:1px solid red;
+  }
+  .task:hover{
+    color: blue;
+  }
+
+  .task span {
+    color: #FFFFFF;
+  }
+  .toggleTaskBtn{
+    margin-top: 1rem;
+    display: flex;
+    justify-content: center;
+  }
+
+.icon {
+    float: right;
+    margin-right: 20px;
+    
+  }
+
+@media (max-width:768px){
+ 
+ .task{ 
+  margin-top:30px;
+  margin-left: -270px;
+  width: 300px;
+  
+  }
+}

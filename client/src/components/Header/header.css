@@ -1,0 +1,30 @@
+.header{
+   position: sticky;
+   overflow: hidden;
+}
+
+.logo{
+
+   margin-left: 10px;
+}
+.logoutBtn{
+   margin-left: 20rem
+}
+
+
+
+.humburger{
+   margin-left: 40px;
+}
+
+@media  (max-width: 768px){
+
+   .header{
+    background-color: blue;
+    margin-top: 40px;
+    width: 100% ;
+   }
+   .logoutBtn{
+      margin-left: 0px;
+   }
+}

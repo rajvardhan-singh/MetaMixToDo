@@ -1,16 +1,14 @@
 import React from 'react'
  
-import Appointed from '../components/Appointed'
-import CurrentDate from '../components/CurrentDate'
-import Header from '../components/Header'
-import Navbar from '../components/Navbar'
+import AppointedList from '../components/Tasks/AppointedList/AppointedList'
+import CurrentDate from '../components/CurrentDate/CurrentDate'
+import Navbar from '../components/Navbar/SideBar'
 const AssignedTask = () => {
   return (
     <div>
-      <Header/>
-      <Navbar/>
+      {/* <Navbar/> */}
       <CurrentDate/>
-      <Appointed/>
+      <AppointedList/>
     </div>
   )
 }

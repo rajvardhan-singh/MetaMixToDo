@@ -9,11 +9,11 @@ import userRoutes from './routes/user.js';
 const app = express();
 
 app.use(bodyParser.json({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }))
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(cors());
 
-app.use('/', taskRoutes);
-app.use('/',userRoutes);
+app.use('/tasks', taskRoutes);
+app.use('/user',userRoutes);
 
 
 const PORT = 8000;

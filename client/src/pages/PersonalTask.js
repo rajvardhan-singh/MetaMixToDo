@@ -1,16 +1,14 @@
 import React from 'react'
-import CurrentDate from '../components/CurrentDate'
-import Header from '../components/Header'
-import MyTask from '../components/MyTask'
-import Navbar from '../components/Navbar'
+import CurrentDate from '../components/CurrentDate/CurrentDate'
+import MyTaskList from '../components/Tasks/MyTaskList/MyTaskList'
+
 
 const PersonalTask = () => {
   return (
     <div>
-      <Header/>
-      <Navbar/>
+      {/* <Navbar/> */}
       <CurrentDate/>
-      <MyTask/>
+      <MyTaskList/>
     </div>
   )
 }

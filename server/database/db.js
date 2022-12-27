@@ -8,10 +8,10 @@ const PASSWORD = process.env.DB_PASSWORD;
 
 const Connection = () => {
 
-    const MONGODB_URI = "mongodb://127.0.0.1:27017/todoDB";
+    const MONGODB_URI = "mongodb+srv://admin-pranav:2Y6VIdfaYoEGERTG@cluster0.8rr4a.mongodb.net/davidDB";
 
     mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
-
+    
     mongoose.connection.on('connected', () => {
         console.log('Database connected Successfully');
     })
